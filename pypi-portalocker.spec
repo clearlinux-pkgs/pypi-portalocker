@@ -5,15 +5,14 @@
 # Source0 file verified with key 0xE81444E9CE1F695D (wolph@wol.ph)
 #
 Name     : pypi-portalocker
-Version  : 2.5.1
-Release  : 25
-URL      : https://files.pythonhosted.org/packages/28/b5/ee15a73d2d1e3e4f8ed9cf46b8c590317fa182b5c50ab5149e0c66866f25/portalocker-2.5.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/28/b5/ee15a73d2d1e3e4f8ed9cf46b8c590317fa182b5c50ab5149e0c66866f25/portalocker-2.5.1.tar.gz
-Source1  : https://files.pythonhosted.org/packages/28/b5/ee15a73d2d1e3e4f8ed9cf46b8c590317fa182b5c50ab5149e0c66866f25/portalocker-2.5.1.tar.gz.asc
+Version  : 2.6.0
+Release  : 26
+URL      : https://files.pythonhosted.org/packages/a6/5c/57ef8091f9f1d01bf5413fcd0fd1f2f255f45536e42bfd34bc45b6cc2786/portalocker-2.6.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/a6/5c/57ef8091f9f1d01bf5413fcd0fd1f2f255f45536e42bfd34bc45b6cc2786/portalocker-2.6.0.tar.gz
+Source1  : https://files.pythonhosted.org/packages/a6/5c/57ef8091f9f1d01bf5413fcd0fd1f2f255f45536e42bfd34bc45b6cc2786/portalocker-2.6.0.tar.gz.asc
 Summary  : Wraps the portalocker recipe for easy usage
 Group    : Development/Tools
 License  : Python-2.0
-Requires: pypi-portalocker-license = %{version}-%{release}
 Requires: pypi-portalocker-python = %{version}-%{release}
 Requires: pypi-portalocker-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -23,14 +22,6 @@ BuildRequires : pypi(pywin32)
 ############################################
 portalocker - Cross-platform locking library
 ############################################
-
-%package license
-Summary: license components for the pypi-portalocker package.
-Group: Default
-
-%description license
-license components for the pypi-portalocker package.
-
 
 %package python
 Summary: python components for the pypi-portalocker package.
@@ -53,10 +44,10 @@ python3 components for the pypi-portalocker package.
 
 
 %prep
-%setup -q -n portalocker-2.5.1
-cd %{_builddir}/portalocker-2.5.1
+%setup -q -n portalocker-2.6.0
+cd %{_builddir}/portalocker-2.6.0
 pushd ..
-cp -a portalocker-2.5.1 buildavx2
+cp -a portalocker-2.6.0 buildavx2
 popd
 
 %build
@@ -64,7 +55,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1657480180
+export SOURCE_DATE_EPOCH=1666136185
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -88,8 +79,6 @@ popd
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/pypi-portalocker
-cp %{_builddir}/portalocker-2.5.1/LICENSE %{buildroot}/usr/share/package-licenses/pypi-portalocker/63e1288b0ebc7a7a559b2939a4f5f9a7ee2e673f
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -106,10 +95,6 @@ popd
 
 %files
 %defattr(-,root,root,-)
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/pypi-portalocker/63e1288b0ebc7a7a559b2939a4f5f9a7ee2e673f
 
 %files python
 %defattr(-,root,root,-)
