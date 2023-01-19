@@ -1,5 +1,5 @@
 PKG_NAME := pypi-portalocker
-URL = https://files.pythonhosted.org/packages/a6/5c/57ef8091f9f1d01bf5413fcd0fd1f2f255f45536e42bfd34bc45b6cc2786/portalocker-2.6.0.tar.gz
+URL = https://files.pythonhosted.org/packages/1f/f8/969e6f280201b40b31bcb62843c619f343dcc351dff83a5891530c9dd60e/portalocker-2.7.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common

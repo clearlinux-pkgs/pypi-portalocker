@@ -5,23 +5,35 @@
 # Source0 file verified with key 0xE81444E9CE1F695D (wolph@wol.ph)
 #
 Name     : pypi-portalocker
-Version  : 2.6.0
-Release  : 29
-URL      : https://files.pythonhosted.org/packages/a6/5c/57ef8091f9f1d01bf5413fcd0fd1f2f255f45536e42bfd34bc45b6cc2786/portalocker-2.6.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/a6/5c/57ef8091f9f1d01bf5413fcd0fd1f2f255f45536e42bfd34bc45b6cc2786/portalocker-2.6.0.tar.gz
-Source1  : https://files.pythonhosted.org/packages/a6/5c/57ef8091f9f1d01bf5413fcd0fd1f2f255f45536e42bfd34bc45b6cc2786/portalocker-2.6.0.tar.gz.asc
+Version  : 2.7.0
+Release  : 30
+URL      : https://files.pythonhosted.org/packages/1f/f8/969e6f280201b40b31bcb62843c619f343dcc351dff83a5891530c9dd60e/portalocker-2.7.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/1f/f8/969e6f280201b40b31bcb62843c619f343dcc351dff83a5891530c9dd60e/portalocker-2.7.0.tar.gz
+Source1  : https://files.pythonhosted.org/packages/1f/f8/969e6f280201b40b31bcb62843c619f343dcc351dff83a5891530c9dd60e/portalocker-2.7.0.tar.gz.asc
 Summary  : Wraps the portalocker recipe for easy usage
 Group    : Development/Tools
-License  : Python-2.0
+License  : BSD-3-Clause
+Requires: pypi-portalocker-license = %{version}-%{release}
 Requires: pypi-portalocker-python = %{version}-%{release}
 Requires: pypi-portalocker-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(pywin32)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 ############################################
 portalocker - Cross-platform locking library
 ############################################
+
+%package license
+Summary: license components for the pypi-portalocker package.
+Group: Default
+
+%description license
+license components for the pypi-portalocker package.
+
 
 %package python
 Summary: python components for the pypi-portalocker package.
@@ -44,10 +56,10 @@ python3 components for the pypi-portalocker package.
 
 
 %prep
-%setup -q -n portalocker-2.6.0
-cd %{_builddir}/portalocker-2.6.0
+%setup -q -n portalocker-2.7.0
+cd %{_builddir}/portalocker-2.7.0
 pushd ..
-cp -a portalocker-2.6.0 buildavx2
+cp -a portalocker-2.7.0 buildavx2
 popd
 
 %build
@@ -55,15 +67,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1666136185
+export SOURCE_DATE_EPOCH=1674149595
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -79,6 +91,8 @@ popd
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pypi-portalocker
+cp %{_builddir}/portalocker-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-portalocker/7d29370859efc0d78b0f16c4ebef71485c40993a || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -95,6 +109,10 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pypi-portalocker/7d29370859efc0d78b0f16c4ebef71485c40993a
 
 %files python
 %defattr(-,root,root,-)
