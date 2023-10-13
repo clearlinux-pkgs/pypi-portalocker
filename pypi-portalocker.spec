@@ -5,7 +5,7 @@
 #
 Name     : pypi-portalocker
 Version  : 2.8.2
-Release  : 31
+Release  : 32
 URL      : https://files.pythonhosted.org/packages/35/00/0f230921ba852226275762ea3974b87eeca36e941a13cd691ed296d279e5/portalocker-2.8.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/35/00/0f230921ba852226275762ea3974b87eeca36e941a13cd691ed296d279e5/portalocker-2.8.2.tar.gz
 Summary  : Wraps the portalocker recipe for easy usage
