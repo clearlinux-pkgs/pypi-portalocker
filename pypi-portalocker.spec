@@ -7,7 +7,7 @@
 #
 Name     : pypi-portalocker
 Version  : 2.10.1
-Release  : 35
+Release  : 36
 URL      : https://files.pythonhosted.org/packages/ed/d3/c6c64067759e87af98cc668c1cc75171347d0f1577fab7ca3749134e3cd4/portalocker-2.10.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/ed/d3/c6c64067759e87af98cc668c1cc75171347d0f1577fab7ca3749134e3cd4/portalocker-2.10.1.tar.gz
 Summary  : Wraps the portalocker recipe for easy usage
