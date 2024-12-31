@@ -6,10 +6,10 @@
 # autospec commit: 5424026
 #
 Name     : pypi-portalocker
-Version  : 3.0.0
-Release  : 37
-URL      : https://files.pythonhosted.org/packages/7e/57/b969aed128768558255822e75b402a19530bd63321f637d42f4724abc1ed/portalocker-3.0.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/7e/57/b969aed128768558255822e75b402a19530bd63321f637d42f4724abc1ed/portalocker-3.0.0.tar.gz
+Version  : 3.1.1
+Release  : 38
+URL      : https://files.pythonhosted.org/packages/ac/91/8bfe23e1f7f630f2061ef38b5225d9fda9068d6a30fcbc187951e678e630/portalocker-3.1.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/ac/91/8bfe23e1f7f630f2061ef38b5225d9fda9068d6a30fcbc187951e678e630/portalocker-3.1.1.tar.gz
 Summary  : Wraps the portalocker recipe for easy usage
 Group    : Development/Tools
 License  : BSD-3-Clause
@@ -17,13 +17,8 @@ Requires: pypi-portalocker-license = %{version}-%{release}
 Requires: pypi-portalocker-python = %{version}-%{release}
 Requires: pypi-portalocker-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-BuildRequires : pypi(py)
 BuildRequires : pypi(setuptools)
 BuildRequires : pypi(setuptools_scm)
-BuildRequires : pypi-pluggy
-BuildRequires : pypi-pytest
-BuildRequires : pypi-tox
-BuildRequires : pypi-virtualenv
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -61,10 +56,10 @@ python3 components for the pypi-portalocker package.
 
 
 %prep
-%setup -q -n portalocker-3.0.0
-cd %{_builddir}/portalocker-3.0.0
+%setup -q -n portalocker-3.1.1
+cd %{_builddir}/portalocker-3.1.1
 pushd ..
-cp -a portalocker-3.0.0 buildavx2
+cp -a portalocker-3.1.1 buildavx2
 popd
 
 %build
@@ -72,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1731955002
+export SOURCE_DATE_EPOCH=1735659172
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
